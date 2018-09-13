@@ -8,7 +8,7 @@ export class TokenStorage {
 
   constructor() { }
 
- public signOut() {
+  signOut() {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.clear();
   }

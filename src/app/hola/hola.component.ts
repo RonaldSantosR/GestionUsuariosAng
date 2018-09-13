@@ -13,7 +13,17 @@ export class HolaComponent implements OnInit {
 
   ngOnInit() {
   }
-
+/*
+  login(): void {
+    this.authService.attemptAuth(this.username, this.password).subscribe(
+      data => {
+        this.token.saveToken(data.token);
+        console.log(this.username + " || " + this.password);
+      this.router.navigate(['./hola'])
+      }
+    );
+  }
+*/
   logout(){
     this.token.signOut();
     this.router.navigate(['./login'])
