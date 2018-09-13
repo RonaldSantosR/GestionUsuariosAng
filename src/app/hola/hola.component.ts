@@ -28,9 +28,10 @@ export class HolaComponent implements OnInit {
   username: string;
 
   logout(){
-    this.authService.FinAuth(this.username).subscribe(
+    this.authService.FinAuth().subscribe(
       data => {
       this.token.signOut();
+      console.log("TODO VA BIEN");
       this.router.navigate(['./login'])
       }
     )

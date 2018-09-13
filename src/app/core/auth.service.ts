@@ -25,10 +25,10 @@ export class AuthService {
     return this.http.post<any>('http://localhost:9082/login/generate-token', credentials, {headers: this.headers});
   }
 
-  FinAuth(ussername: string){
-    const creden = {username: ussername};
+  FinAuth(){
     console.log('FinAuth ::');
-    return this.http.post<any>('http://localhost:9082/login/cerrarsession', creden);
+    return this.http.get<any>('http://localhost:9082/login/cerrarsession');
+    console.log("LLEGO A LLAMAR AL METODO");
   }
 
 }
