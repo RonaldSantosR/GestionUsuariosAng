@@ -14,9 +14,6 @@ import {TokenStorage} from '../core/token.storage';
 })
 export class LoginComponent {
 
-
-
-
   constructor(private router: Router, public dialog: MatDialog, private authService: AuthService, private token: TokenStorage) {
   }
 
@@ -28,7 +25,7 @@ export class LoginComponent {
       data => {
         this.token.saveToken(data.token);
         console.log(this.username + " || " + this.password);
-        
+      this.router.navigate(['./hola'])
       }
     );
   }
