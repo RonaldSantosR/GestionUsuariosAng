@@ -21,14 +21,14 @@ export class AuthService {
   attemptAuth(ussername: string, password: string): Observable<any> {
     const credentials = {username: ussername, password: password};
     console.log('attempAuth ::');
-    // console.log(ussername, password);
+    console.log(ussername, password + " A");
     return this.http.post<any>('http://localhost:9082/login/generate-token', credentials, {headers: this.headers});
   }
 
-  FinAuth(){
-    console.log('FinAuth ::');
-    return this.http.get<any>('http://localhost:9082/login/cerrarsession');
-    console.log("LLEGO A LLAMAR AL METODO");
-  }
+  // FinAuth(ussername: string, qpassword: string): Observable<any> {
+  //   const creden = {qussername: ussername, password:password};
+  //   console.log('FinAuth :: ' + ussername + ' ' + password);
+  //   return this.http.post<any>('http://localhost:9082/login/cerrarsession', creden);
+  // }
 
 }

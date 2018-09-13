@@ -25,18 +25,19 @@ export class HolaComponent implements OnInit {
     );
   }
 */
-  username: string;
+  // username: string;
+  // pasword: string;
 
-  logout(){
-    this.authService.FinAuth().subscribe(
-      data => {
-      this.token.signOut();
-      console.log("TODO VA BIEN");
-      this.router.navigate(['./login'])
-      }
-    )
-  }
+  // logout(){
+  //   this.authService.FinAuth(this.username, this.pasword).subscribe(
+  //     data => {
+  //     this.token.signOut();
+  //     console.log("TODO VA BIEN");
+  //     this.router.navigate(['./login'])
+  //     }
+  //   )
+  // }
 
 
-  
+
 }
