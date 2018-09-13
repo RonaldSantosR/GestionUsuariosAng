@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
 
 @Component({
@@ -9,7 +10,7 @@ import { TokenStorage } from '../core/token.storage';
 })
 export class HolaComponent implements OnInit {
 
-  constructor(private router:Router, private token:TokenStorage) { }
+  constructor(private router:Router, private authService: AuthService, private token:TokenStorage) { }
 
   ngOnInit() {
   }
@@ -24,9 +25,17 @@ export class HolaComponent implements OnInit {
     );
   }
 */
+  username: string;
+
   logout(){
-    this.token.signOut();
-    this.router.navigate(['./login'])
+    this.authService.FinAuth(this.username).subscribe(
+      data => {
+      this.token.signOut();
+      this.router.navigate(['./login'])
+      }
+    )
   }
 
+
+  
 }
