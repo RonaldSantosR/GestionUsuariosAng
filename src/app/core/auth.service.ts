@@ -13,6 +13,7 @@ export class AuthService {
   attemptAuth(ussername: string, password: string): Observable<any> {
     const credentials = {username: ussername, password: password};
     console.log('attempAuth ::');
+    // console.log(ussername, password);
     return this.http.post<any>('http://localhost:9082/login/generate-token', credentials);
   }
 

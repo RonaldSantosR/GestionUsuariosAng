@@ -11,12 +11,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./core/auth.service";
 import {Interceptor} from "./core/interceptor";
 import {TokenStorage} from "./core/token.storage";
+import { HolaComponent } from './hola/hola.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    HolaComponent
   ],
   imports: [
     BrowserModule,

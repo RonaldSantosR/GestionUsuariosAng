@@ -4,12 +4,18 @@ import {MatDialog} from '@angular/material';
 import {AuthService} from '../core/auth.service';
 import {TokenStorage} from '../core/token.storage';
 
+
+// const TOKEN_KEY = 'AuthTokenChris';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+
+
 
   constructor(private router: Router, public dialog: MatDialog, private authService: AuthService, private token: TokenStorage) {
   }
@@ -21,9 +27,12 @@ export class LoginComponent {
     this.authService.attemptAuth(this.username, this.password).subscribe(
       data => {
         this.token.saveToken(data.token);
+        console.log(this.username + " || " + this.password);
         
       }
     );
   }
+
+
 
 }
