@@ -10,7 +10,11 @@ import { TokenStorage } from '../core/token.storage';
 })
 export class HolaComponent implements OnInit {
 
-  constructor(private router:Router, private authService: AuthService, private token:TokenStorage) { }
+  constructor(private router:Router, 
+              private authService: AuthService, 
+              private token:TokenStorage
+              ) { }
+
 
   ngOnInit() {
   }
@@ -25,19 +29,36 @@ export class HolaComponent implements OnInit {
     );
   }
 */
-  // username: string;
-  // pasword: string;
+  
 
-  // logout(){
-  //   this.authService.FinAuth(this.username, this.pasword).subscribe(
-  //     data => {
-  //     this.token.signOut();
-  //     console.log("TODO VA BIEN");
-  //     this.router.navigate(['./login'])
-  //     }
-  //   )
-  // }
+  usser: string;
+  pass: string;
 
+  logout(){
+    this.usser = this.token.getToken();
+    console.log(this.usser);
+
+      this.token.signOut();
+
+    this.router.navigate(['./login'])
+
+
+
+
+
+    // console.log(this.usser + " || " + this.pass);
+    // this.authService.FinAuth(this.usser, this.pass).subscribe(
+    //   data => {
+    //   this.token.signOut();
+    //   console.log("TODO VA BIEN");
+    //   console.log(this.usser + " || " + this.pass);
+    //   this.router.navigate(['./login'])
+    //   }
+    // )
+
+
+
+  }
 
 
 }
