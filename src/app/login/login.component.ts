@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NgForm}  from '@angular/forms';
+
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {NgForm}  from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {AuthService} from '../core/auth.service';
@@ -15,6 +17,8 @@ import {TokenStorage} from '../core/token.storage';
 })
 export class LoginComponent {
 
+  forma:FormGroup;
+
   constructor(private router: Router, 
               public dialog: MatDialog, 
               private authService: AuthService, 
@@ -24,15 +28,15 @@ export class LoginComponent {
   login(forma:NgForm): void {
 
     console.log("1º Formulario posteado");
-    console.log("2º ngForm", forma);
-    console.log("3º valor", forma.value);
-    console.log("4º valor", forma.value.nombre);
+    console.log("2º FORMA: ", forma);
+    console.log("3º VALOR: ", forma.value);
+    console.log("4º USUARIO: ", forma.value.usuario);
 
 
-    this.authService.attemptAuth(forma.value.nombre, forma.value.password).subscribe(
+    this.authService.attemptAuth(forma.value.usuario, forma.value.contraseña).subscribe(
       data => {
         this.token.saveToken(data.token);
-      console.log(forma.value.nombre + " || " + forma.value.password);
+      console.log(forma.value.usuario + " || " + forma.value.contraseña);
         this.router.navigate(['./hola'])
     }
   );
