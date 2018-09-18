@@ -18,18 +18,7 @@ export class HolaComponent implements OnInit {
 
   ngOnInit() {
   }
-/*
-  login(): void {
-    this.authService.attemptAuth(this.username, this.password).subscribe(
-      data => {
-        this.token.saveToken(data.token);
-        console.log(this.username + " || " + this.password);
-      this.router.navigate(['./hola'])
-      }
-    );
-  }
-*/
-  
+
 
   usser: string;
   pass: string;
@@ -38,27 +27,14 @@ export class HolaComponent implements OnInit {
     this.usser = this.token.getToken();
     console.log(this.usser);
 
-      this.token.signOut();
+    this.authService.FinAuth;
+ 
+    this.token.signOut();
 
     this.router.navigate(['./login'])
 
-
-
-
-
-    // console.log(this.usser + " || " + this.pass);
-    // this.authService.FinAuth(this.usser, this.pass).subscribe(
-    //   data => {
-    //   this.token.signOut();
-    //   console.log("TODO VA BIEN");
-    //   console.log(this.usser + " || " + this.pass);
-    //   this.router.navigate(['./login'])
-    //   }
-    // )
-
-
-
   }
 
+  
 
 }

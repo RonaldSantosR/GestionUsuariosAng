@@ -1,3 +1,5 @@
+/*  
+
 .example-icon {
     padding: 0 14px;
   }
@@ -6,7 +8,7 @@
     flex: 1 1 auto;
   }
 
-  /* TODO */
+
   .example-card {
     width: 400px;
     margin: 10% auto;
@@ -17,7 +19,7 @@
     border-radius: 10px; 
   }
  
-  /* TITULO */
+
   .mat-card-title{
     font-size: 30px;
     margin: 25px 50px 25px 125px;
@@ -57,3 +59,5 @@ button{
     border: none;
     background: pink;
 }
+
+*/

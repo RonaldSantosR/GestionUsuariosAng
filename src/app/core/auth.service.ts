@@ -18,21 +18,22 @@ export class AuthService {
 
   }
 
-  attemptAuth(ussername: string, password: string): Observable<any> {
+  attemptAuth(nombre: string, password: string): Observable<any> {
     this.headers = new HttpHeaders({
-      "Authorization": "Basic " + btoa(ussername + ':' + password)  
+      "Authorization": "Basic " + btoa(nombre + ':' + password)
     })
-    console.log(btoa(ussername + ':' + password ));
-    const credentials = {username: ussername, password: password};
-    console.log('attempAuth ::');
-    console.log(ussername, password + " A");
-    return this.http.post<any>('http://localhost:9082/login/generate-token', credentials, {headers: this.headers});
+    console.log("5º " + nombre + " " + password + "???")
+    
+    const credentials = {username: nombre, password: password};
+    console.log('6º attempAuth ::');
+    console.log(nombre, password + " 7A");
+    return this.http.post<any>('http://localhost:9082/login/generate-token', null, {headers: this.headers});
   }
 
-  // FinAuth(ussername: string, password: string): Observable<any> {
-  //   const creden = {usser: ussername, password:password};
-  //   console.log('FinAuth :: ' + ussername + ' ' + password);
-  //   return this.http.post<any>('http://localhost:9082/login/cerrarsession', creden);
-  // }
+  FinAuth(ussername: string, password: string): Observable<any> {
+    const creden = {usser: ussername, password:password};
+    console.log('FinAuth :: ' + ussername + ' ' + password);
+    return this.http.post<any>('http://localhost:9082/login/cerrarsession',null);
+  }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm}  from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {AuthService} from '../core/auth.service';
@@ -20,19 +21,22 @@ export class LoginComponent {
               private token: TokenStorage) {
   }
 
-  username: string;
-  password: string;
+  login(forma:NgForm): void {
 
-  login(): void {
-    this.authService.attemptAuth(this.username, this.password).subscribe(
+    console.log("1º Formulario posteado");
+    console.log("2º ngForm", forma);
+    console.log("3º valor", forma.value);
+    console.log("4º valor", forma.value.nombre);
+
+
+    this.authService.attemptAuth(forma.value.nombre, forma.value.password).subscribe(
       data => {
         this.token.saveToken(data.token);
-        console.log(this.username + " || " + this.password);
-      this.router.navigate(['./hola'])
-      }
-    );
-  }
-
+      console.log(forma.value.nombre + " || " + forma.value.password);
+        this.router.navigate(['./hola'])
+    }
+  );
+}
 
 
 }
