@@ -23,24 +23,45 @@ export class LoginComponent {
               public dialog: MatDialog, 
               private authService: AuthService, 
               private token: TokenStorage) {
+
+
+
+                
+                this.forma = new FormGroup({
+                  'usuario' : new FormControl('',     Validators.required),
+                  'contraseña' : new FormControl('',  Validators.required)
+                })
+
+
+
+
+
   }
 
-  login(forma:NgForm): void {
+  login(){
 
-    console.log("1º Formulario posteado");
-    console.log("2º FORMA: ", forma);
-    console.log("3º VALOR: ", forma.value);
-    console.log("4º USUARIO: ", forma.value.usuario);
+    console.log(this.forma.value);
 
 
-    this.authService.attemptAuth(forma.value.usuario, forma.value.contraseña).subscribe(
-      data => {
-        this.token.saveToken(data.token);
-      console.log(forma.value.usuario + " || " + forma.value.contraseña);
-        this.router.navigate(['./hola'])
-    }
-  );
+    this.router.navigate(['./hola'])
 }
+
+//   login(forma:NgForm): void {
+
+//     console.log("1º Formulario posteado");
+//     console.log("2º FORMA: ", forma);
+//     console.log("3º VALOR: ", forma.value);
+//     console.log("4º USUARIO: ", forma.value.usuario);
+
+
+//     this.authService.attemptAuth(forma.value.usuario, forma.value.contraseña).subscribe(
+//       data => {
+//         this.token.saveToken(data.token);
+//       console.log(forma.value.usuario + " || " + forma.value.contraseña);
+//         this.router.navigate(['./hola'])
+//     }
+//   );
+// }
 
 
 }
