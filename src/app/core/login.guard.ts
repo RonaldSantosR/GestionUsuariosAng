@@ -16,8 +16,6 @@ export class LoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     
-
-
       if(this.token.getToken() === null){
         this.router.navigate(['./login']);
         return false;

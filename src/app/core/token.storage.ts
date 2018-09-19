@@ -19,6 +19,6 @@ export class TokenStorage {
   }
 
   public getToken(): string {
-    return localStorage.getItem(TOKEN_KEY);
+    return window.localStorage.getItem(TOKEN_KEY);
   }
 }
