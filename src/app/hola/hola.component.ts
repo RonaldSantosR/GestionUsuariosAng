@@ -20,16 +20,16 @@ export class HolaComponent implements OnInit {
   }
 
 
-  tokencito: string;
+  
 
   logout(){
-    this.tokencito = this.token.getToken();
-    console.log(this.tokencito);
 
-    this.authService.FinAuth;
- 
-    this.token.signOut();
-    this.router.navigate(['./login'])
+    this.authService.FinAuth().subscribe(
+      data => {
+        this.token.signOut();
+        this.router.navigate(['./login'])
+             }
+     );
 
   }
 

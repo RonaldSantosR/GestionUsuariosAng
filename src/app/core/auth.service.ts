@@ -22,24 +22,21 @@ export class AuthService {
     this.headers = new HttpHeaders({
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
-
-    // const credentials = {ussername: ussername, password: password};
-    console.log('5º attempAuth :: ' + ussername + ' : ' + password);
-
     return this.http.post<any>('http://localhost:9082/login/generate-token', null, {headers: this.headers});
   }
 
+  FinAuth(): Observable<any> {
+    console.log(this.token.getToken())
+    let jwt = this.token.getToken();
+    let jwtData = jwt.split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData)
+    let sesion = decodedJwtData.idSesion
 
+    console.log('idSesion :: '+sesion);
 
-
-  FinAuth(ussername: string, password: string): Observable<any> {
-    this.headers = new HttpHeaders({
-      "Authorization": "Basic " + btoa(ussername + ':' + password)
-    })
-    // const creden = {usser: ussername, password:password};
-    console.log('6º FinAuth :: ' + ussername + ' ' + password);
-
-    return this.http.post<any>('http://localhost:9082/login/cerrarsession',null, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/cerrarsession',null);
+    
   }
 
   
