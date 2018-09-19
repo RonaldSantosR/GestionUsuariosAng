@@ -28,7 +28,7 @@ export class LoginComponent {
 
                 
                 this.forma = new FormGroup({
-                  'usuario' : new FormControl('',     Validators.required),
+                  'usuario' : new FormControl('',     [Validators.required,Validators.minLength(4)]), 
                   'contraseña' : new FormControl('',  Validators.required)
                 })
 
@@ -38,30 +38,16 @@ export class LoginComponent {
 
   }
 
+
+
   login(){
-
     console.log(this.forma.value);
+    this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(data => {
+        this.token.saveToken(data.token);
+        this.router.navigate(['./hola'])
+    })
+  }
 
-
-    this.router.navigate(['./hola'])
-}
-
-//   login(forma:NgForm): void {
-
-//     console.log("1º Formulario posteado");
-//     console.log("2º FORMA: ", forma);
-//     console.log("3º VALOR: ", forma.value);
-//     console.log("4º USUARIO: ", forma.value.usuario);
-
-
-//     this.authService.attemptAuth(forma.value.usuario, forma.value.contraseña).subscribe(
-//       data => {
-//         this.token.saveToken(data.token);
-//       console.log(forma.value.usuario + " || " + forma.value.contraseña);
-//         this.router.navigate(['./hola'])
-//     }
-//   );
-// }
 
 
 }
