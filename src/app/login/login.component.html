@@ -10,7 +10,7 @@
 
 
 
-        <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('usuario').valid }">
+        <div class="form-group row" [ngClass]="{ 'has-danger': forma.get('usuario').touched && !forma.get('usuario').valid}">
           <label class="col-2 col-form-label">USUARIO</label>
           <div class="col-8">
 
@@ -19,12 +19,12 @@
                    placeholder="Ingrese su usuario"
                    formControlName="usuario">
 
-            <div *ngIf="forma.controls['usuario'].errors?.required"
+            <div *ngIf="forma.controls['usuario'].errors?.required && forma.get('usuario').touched"
             class="form-control-feedback">
               El usuario es necesario.
             </div>
 
-            <div *ngIf="forma.controls['usuario'].errors?.minlength"
+            <div *ngIf="forma.controls['usuario'].errors?.minlength && forma.get('usuario').touched"
             class="form-control-feedback">
               Por lo menos 4 caracteres.
             </div>
@@ -35,7 +35,7 @@
 
 
 
-        <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('contraseña').valid }">
+        <div class="form-group row" [ngClass]="{ 'has-danger': forma.get('contraseña').touched && !forma.get('contraseña').valid}">
             <label class="col-2 col-form-label">CONTRASEÑA</label>
             <div class="col-8">
 
@@ -44,7 +44,7 @@
                      placeholder="Ingrese su contraseña"
                      formControlName="contraseña">
 
-              <div *ngIf="forma.controls['usuario'].errors?.required"
+              <div *ngIf="forma.controls['contraseña'].errors?.required && forma.get('contraseña').touched"
               class="form-control-feedback">
                 La contraseña es necesaria.
               </div>
@@ -57,7 +57,8 @@
           <div class="form-group row">
               <label class="col-2 col-form-label">&nbsp;</label>
               <div class="input-group col-md-8">
-                <button type="submit" class="btn btn-outline-primary">
+                <button type="submit" class="btn btn-outline-primary"
+                [disabled]="!forma.valid">
                   LOGUEAR
                 </button>
               </div>

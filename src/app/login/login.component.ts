@@ -38,6 +38,7 @@ export class LoginComponent {
            data => {
               this.token.saveToken(data.token);
               console.log(this.forma.value);
+              console.log("El usuario ingresó y se creó su token");
               this.router.navigate(['./hola'])
                   }
           );
