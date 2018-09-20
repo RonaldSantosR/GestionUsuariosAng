@@ -2,8 +2,9 @@ input{
   width: 30%;
     margin-bottom: 20px;
     padding: 7px;
-    background: rgba(82, 179, 246);
-    color: black;
+    background: rgb(220, 240, 255);
+    border-color: black;
+
 }
 
 

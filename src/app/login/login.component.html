@@ -5,7 +5,7 @@
     <!-- <form (ngSubmit)="login(forma)" #forma="ngForm" novalidate>  -->
     <form [formGroup]="forma" (ngSubmit)="login()" novalidate="novalidate">   
 
-      <div>
+      <div class="hola">
 
 
 
@@ -49,7 +49,7 @@
                 La contraseña es necesaria.
               </div>
             </div>
-          </div>
+        </div>
 
 
 
@@ -58,8 +58,7 @@
               <label class="col-2 col-form-label">&nbsp;</label>
               <div class="input-group col-md-8">
                 <button type="submit" class="btn btn-outline-primary"
-                [disabled]="contar(count)"
-                (click)="count = count + 1"
+                [disabled]="count === 3"
                 >
                 LOGUEAR
                 </button>
@@ -67,6 +66,11 @@
             </div>
 
             <h5>La validación del Login es: <h2>{{forma.valid}}</h2></h5>
+
+            <br>
+            <pre>
+              {{segundos}}
+            </pre>
 
       </div>
 
