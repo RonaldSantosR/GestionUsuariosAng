@@ -18,6 +18,8 @@ import {TokenStorage} from '../core/token.storage';
 export class LoginComponent {
 
   forma:FormGroup;
+  count: number = 0;
+  buttonDisabled: boolean = false;
 
   constructor(private router: Router, 
               public dialog: MatDialog, 
@@ -42,6 +44,13 @@ export class LoginComponent {
               this.router.navigate(['./hola'])
                   }
           );
+  }
+
+  contar(contando : number){
+      if(contando%3===0 && contando!=0){
+        return this.buttonDisabled=true;
+      }else
+        return this.buttonDisabled=false;
   }
 
 

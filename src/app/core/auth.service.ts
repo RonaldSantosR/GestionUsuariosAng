@@ -35,7 +35,7 @@ export class AuthService {
 
     console.log('idSesion :: '+sesion);
 
-    return this.http.post<any>('http://localhost:9082/login/cerrarsession',null);
+    return this.http.post<any>('http://localhost:9082/login/cerrarsession',sesion);
     
   }
 
