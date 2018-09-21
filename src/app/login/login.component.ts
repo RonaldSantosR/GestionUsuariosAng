@@ -45,7 +45,8 @@ export class LoginComponent {
         if (data) {
           console.log(this.forma);
           this.token.saveToken(data.token);
-          this.router.navigate(['./hola'])
+          window.location.href = data.link;
+          //this.router.navigate(['./hola'])
         }
         else {
           this.error = "Usuario o Password incorrecto";
@@ -53,6 +54,7 @@ export class LoginComponent {
       },
       error => {
         this.error = "Usuario o Password incorrecto 2";
+        console.log(this.error);
       }
     );
 
