@@ -41,6 +41,16 @@ export class LoginComponent {
 
   login() {
 
+    this.count++;
+    if (this.count === 3) {
+      this.mostrarSegundos();
+      setTimeout(() => {
+        this.count = 0;
+      }, 3000);
+      this.segundos=3;
+
+    }
+
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
       console.log("Ingrese todos los datos");
@@ -53,11 +63,11 @@ export class LoginComponent {
           console.log(this.forma);
           this.token.saveToken(data.token);
           window.location.href = data.link;
-          //this.router.navigate(['./hola'])
+          return;
         }
-        else {
-          this.error = "Usuario o Password incorrecto";
-        }
+        // else {
+        //   this.error = "Usuario o Password incorrecto aaaaaaaaaaaa";
+        // }
       },
       error => {
         switch (error.status) {
@@ -65,7 +75,7 @@ export class LoginComponent {
             console.log("El usuario se encuentra inactivo");
             break;
           case 401:
-          console.log("Usuario o password incorrecto");
+          console.log("Error 401: Usuario o password incorrecto");
             break;
           default:
             break;
@@ -73,13 +83,7 @@ export class LoginComponent {
       }
     );
 
-    this.count++;
-    if (this.count === 3) {
-      this.mostrarSegundos();
-      setTimeout(() => {
-        this.count = 0;
-      }, 3000);
-    }
+
 
   }
 
