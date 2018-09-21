@@ -40,6 +40,13 @@ export class LoginComponent {
 
 
   login() {
+
+    if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
+      this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
+      console.log("Ingrese todos los datos");
+      return;
+    }
+
     this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
       data => {
         if (data) {
@@ -53,33 +60,41 @@ export class LoginComponent {
         }
       },
       error => {
-        this.error = "Usuario o Password incorrecto 2";
-        console.log(this.error);
+        switch (error.status) {
+          case 403:
+            console.log("El usuario se encuentra inactivo");
+            break;
+          case 401:
+          console.log("Usuario o password incorrecto");
+            break;
+          default:
+            break;
+        }
       }
     );
 
-    this.count ++;
+    this.count++;
     if (this.count === 3) {
       this.mostrarSegundos();
       setTimeout(() => {
-        this.count=0;
-      } , 3000);
+        this.count = 0;
+      }, 3000);
     }
-    
+
   }
 
-  mostrarSegundos(){
-    setTimeout(() =>{
+  mostrarSegundos() {
+    setTimeout(() => {
       this.segundos--;
       if (this.segundos > 0) {
         this.mostrarSegundos();
-      }      
+      }
     }, 1000)
   }
 
- 
 
-      // setTimeout(this.desactivarboton, 3000);
+
+  // setTimeout(this.desactivarboton, 3000);
 
 
 
