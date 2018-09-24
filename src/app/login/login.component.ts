@@ -22,7 +22,8 @@ export class LoginComponent {
   forma: FormGroup;
   error = "";
   count = 0;
-  segundos = 3;
+  entro = 0;
+  segundos = 5;
   // buttonDisabled: boolean = false;
 
 
@@ -43,24 +44,24 @@ export class LoginComponent {
 
   login() {
     this.count++;
+    console.log(this.count);
 
     if (this.count === 3) {
-      swal('ADVERTENCIA',`Ha intentado ingresar mas veces de lo permitido, espere un momento` , 'warning')
+      swal('ADVERTENCIA', `Ha intentado ingresar mas veces de lo permitido, espere un momento`, 'warning')
       this.mostrarSegundos();
       setTimeout(() => {
         this.count = 0;
-      }, 3000);
+      }, 5000);
+      this.segundos = 5;
       return;
     }
-
-
+  
 
 
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
       console.log("Ingrese todos los datos");
-      swal('ERROR',`Por favor, ingrese todos los datos`, 'error')
-      return;
+      swal('ERROR', `Por favor, ingrese todos los datos`, 'error')
     }
 
 
@@ -70,21 +71,18 @@ export class LoginComponent {
         if (data) {
           console.log(this.forma);
           this.token.saveToken(data.token);
+          this.entro = 1;
           window.location.href = data.link;
-          return;
-        }
-        // else {
-        //   this.error = "Usuario o Password incorrecto aaaaaaaaaaaa";
-        // }
+        } 
       },
       error => {
         switch (error.status) {
           case 403:
             console.log("El usuario se encuentra inactivo");
-            swal('ERROR',`El Usuario se encuentra inactivo`, 'info')
+            swal('ERROR', `El Usuario se encuentra inactivo`, 'info')
             break;
           case 401:
-            swal('ERROR',`El Usuario o Contraseña son incorrectos`, 'error')
+            swal('ERROR', `El Usuario o Contraseña son incorrectos`, 'error')
             console.log("Error 401: Usuario o password incorrecto");
             break;
           default:
@@ -97,8 +95,14 @@ export class LoginComponent {
 
 
 
-    
+
+
+
   }
+
+
+
+
 
   mostrarSegundos() {
     setTimeout(() => {
@@ -108,11 +112,5 @@ export class LoginComponent {
       }
     }, 1000)
   }
-
-
-
-  // setTimeout(this.desactivarboton, 3000);
-
-
 
 }

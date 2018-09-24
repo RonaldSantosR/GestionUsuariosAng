@@ -1,83 +1,53 @@
+h4{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+form{
+  margin: auto;
+  background: rgb(180, 215, 235);
+  width: 50%;
+  border-style: solid;
+  border-color: rgb(100, 164, 247);
+}
+
+
+label{
+  margin-left: 20%;
+  width: 10%;
+  height: 10%;
+}
+
 input{
-  width: 30%;
-    margin-bottom: 20px;
-    padding: 7px;
-    background: rgb(220, 240, 255);
-    border-color: black;
-
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 7px;
+  /* background: rgb(220, 240, 255); */
+  border-color: black;
 }
 
-.caja {
-  background: rgb(220, 240, 255);
-  width: 30%;
-  font-size: 20px;
-  font-weight: 400;
-  }
-
-
-
-
-
-/*  
-
-.example-icon {
-    padding: 0 14px;
-  }
-  
-  .example-spacer {
-    flex: 1 1 auto;
-  }
-
-
-  .example-card {
-    width: 400px;
-    margin: 10% auto;
-    background: rgba(95, 157, 250, 0.4);
-    padding: 30px 30px;
-    box-sizing: border-box;
-    margin-top: 50px;
-    border-radius: 10px; 
-  }
- 
-
-  .mat-card-title{
-    font-size: 30px;
-    margin: 25px 50px 25px 125px;
-  }
- 
-  .example-form {
-    width: 100%;
-    margin: auto;
-    background: rgba(255, 255, 255, 255);
-    padding: 10px 10px;
-    box-sizing: border-box;
-    border-radius: 10px; 
-  }
-  
- 
-  .example-full-width{
-    width: 100%;
-  }
-
-  input{
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 7px;
-    box-sizing: border-box;
-    font-size: 17px;
-    border: none;
-    background: rgba(255, 255, 255, 255);
-  }
-
-
-button{
-    width: 100%;
-	  margin-bottom: 10px 10px;
-	  padding: 7px;
-	  box-sizing: border-box;
-	  font-size: 17px;
-    border: none;
-    background: pink;
+.boton1{
+  /* background: violet; */
+  width: 64%;
+  margin: auto;
+  margin-left: 200px;
 }
 
-*/
+.boton2{
+  /* background: violet; */
+  width: 73%;
+  margin: auto;
+  margin-left: 150px;
+}
+
+.botones{
+  /* background: red; */
+  margin: auto;
+  /* background: rgb(38, 159, 192); */
+}
+
+.caja{
+  text-align: center;
+  /* background: rgb(17, 97, 164); */
+}
