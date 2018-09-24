@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
 
+import swal from 'sweetalert2'
+
 
 //const TOKEN_KEY = 'AuthTokenChris';
 
@@ -40,12 +42,28 @@ export class LoginComponent {
 
 
   login() {
+    this.count++;
+
+    if (this.count === 3) {
+      swal('ADVERTENCIA',`Ha intentado ingresar mas veces de lo permitido, espere un momento` , 'warning')
+      this.mostrarSegundos();
+      setTimeout(() => {
+        this.count = 0;
+      }, 3000);
+      return;
+    }
+
+
+
 
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
       console.log("Ingrese todos los datos");
+      swal('ERROR',`Por favor, ingrese todos los datos`, 'error')
       return;
     }
+
+
 
     this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
       data => {
@@ -53,19 +71,21 @@ export class LoginComponent {
           console.log(this.forma);
           this.token.saveToken(data.token);
           window.location.href = data.link;
-          //this.router.navigate(['./hola'])
+          return;
         }
-        else {
-          this.error = "Usuario o Password incorrecto";
-        }
+        // else {
+        //   this.error = "Usuario o Password incorrecto aaaaaaaaaaaa";
+        // }
       },
       error => {
         switch (error.status) {
           case 403:
             console.log("El usuario se encuentra inactivo");
+            swal('ERROR',`El Usuario se encuentra inactivo`, 'info')
             break;
           case 401:
-          console.log("Usuario o password incorrecto");
+            swal('ERROR',`El Usuario o Contraseña son incorrectos`, 'error')
+            console.log("Error 401: Usuario o password incorrecto");
             break;
           default:
             break;
@@ -73,14 +93,11 @@ export class LoginComponent {
       }
     );
 
-    this.count++;
-    if (this.count === 3) {
-      this.mostrarSegundos();
-      setTimeout(() => {
-        this.count = 0;
-      }, 3000);
-    }
 
+
+
+
+    
   }
 
   mostrarSegundos() {
