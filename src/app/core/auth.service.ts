@@ -12,9 +12,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private token:TokenStorage) {
 
-    // this.headers.append("Content-Type", "application/json");
-    // this.headers.append("Authorization", "Bearer " + this.token.getToken());
-    // this.headers.append("Authorization", "Bearer " + token.getToken());
 
   }
 

@@ -61,8 +61,8 @@ export class LoginComponent {
           if (data) {
             console.log(this.forma);
             this.token.saveToken(data.token);
-            //window.location.href = data.link;
-            this.router.navigate(['./hola'])
+            window.location.href = data.link;
+            // this.router.navigate(['./hola'])
           }
         },
         error => {
@@ -97,14 +97,20 @@ export class LoginComponent {
               })
               break;
           }
-        this.bloquear()
+        this.validarBloquo();
+        return;
         }
       );
     }
-    this.bloquear();
+
+
+    this.validarBloquo();
+
+
   }
 
-  bloquear(){
+
+  validarBloquo(){
     if (this.count === 3) {
       swal({
         title: 'ADVERTENCIA',
@@ -122,8 +128,8 @@ export class LoginComponent {
       this.segundos = 5;
       return;
     }
-
   }
+
 
   mostrarSegundos() {
     setTimeout(() => {
@@ -133,7 +139,6 @@ export class LoginComponent {
       }
     }, 1000)
   }
-
 
 
 
