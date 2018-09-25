@@ -24,6 +24,7 @@ export class LoginComponent {
   count = 0;
   entro = 0;
   segundos = 5;
+  
   // buttonDisabled: boolean = false;
 
 
@@ -47,7 +48,14 @@ export class LoginComponent {
     console.log(this.count);
 
     if (this.count === 3) {
-      swal('ADVERTENCIA', `Ha intentado ingresar mas veces de lo permitido, espere un momento`, 'warning')
+      swal({title:'ADVERTENCIA', 
+            position:'top',
+            text:'Ha intentado ingresar mas veces de lo permitido, espere un momento' , 
+            type:'info', 
+            allowOutsideClick: false,//no cerrar
+            timer: 5000,
+            showConfirmButton: false //quitar botón
+          })
       this.mostrarSegundos();
       setTimeout(() => {
         this.count = 0;
@@ -61,7 +69,12 @@ export class LoginComponent {
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
       console.log("Ingrese todos los datos");
-      swal('ERROR', `Por favor, ingrese todos los datos`, 'error')
+      swal({title:'ERROR',
+           position:'top', 
+           text:'Por favor, ingrese todos los datos', 
+           type:'error',
+           allowOutsideClick: false})
+      return;
     }
 
 
@@ -79,10 +92,18 @@ export class LoginComponent {
         switch (error.status) {
           case 403:
             console.log("El usuario se encuentra inactivo");
-            swal('ERROR', `El Usuario se encuentra inactivo`, 'info')
+            swal({title:'ERROR', 
+            position:'top',
+            text:'El Usuario se encuentra inactivo', 
+            type:'warning',
+            allowOutsideClick: false})
             break;
           case 401:
-            swal('ERROR', `El Usuario o Contraseña son incorrectos`, 'error')
+            swal({title:'ERROR', 
+            position:'top',
+            text:'El Usuario y/o Password son incorrectos', 
+            type:'error',
+            allowOutsideClick: false})
             console.log("Error 401: Usuario o password incorrecto");
             break;
           default:
