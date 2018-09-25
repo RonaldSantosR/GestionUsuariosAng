@@ -91,8 +91,7 @@ export class LoginComponent {
       error => {
         switch (error.status) {
           case 403:
-            console.log("El usuario se encuentra inactivo");
-            swal({title:'ERROR', 
+           swal({title:'ERROR', 
             position:'top',
             text:'El Usuario se encuentra inactivo', 
             type:'warning',
@@ -104,9 +103,13 @@ export class LoginComponent {
             text:'El Usuario y/o Password son incorrectos', 
             type:'error',
             allowOutsideClick: false})
-            console.log("Error 401: Usuario o password incorrecto");
             break;
           default:
+            swal({title:'ERROR', 
+            position:'top',
+            text:'ERROR INTERNO DE SERVIDOR', 
+            type:'error',
+            allowOutsideClick: false})
             break;
         }
       }
