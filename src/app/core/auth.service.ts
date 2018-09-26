@@ -29,10 +29,9 @@ export class AuthService {
     let decodedJwtJsonData = window.atob(jwtData)
     let decodedJwtData = JSON.parse(decodedJwtJsonData)
     let sesion = decodedJwtData.idSesion
-
     console.log('idSesion :: '+sesion);
 
-    return this.http.post<any>('http://localhost:9082/login/cerrarsession',sesion);
+    return this.http.post<any>('http://localhost:9082/login/cerrarsession', sesion);
     
   }
 

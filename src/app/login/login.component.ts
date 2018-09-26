@@ -27,20 +27,19 @@ export class LoginComponent {
   constructor(private router: Router,
     public dialog: MatDialog,
     private authService: AuthService,
-    private token: TokenStorage) {
+    private token: TokenStorage,
+    private refreshtoken: TokenStorage) {
 
 
     this.forma = new FormGroup({
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
     })
-    console.log(this.forma);
+    // console.log(this.forma);
   }
 
 
   login() {
-
-    console.log(this.count);
 
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
@@ -59,10 +58,11 @@ export class LoginComponent {
       this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
         data => {
           if (data) {
-            console.log(this.forma);
-            this.token.saveToken(data.token);
-            window.location.href = data.link;
-            // this.router.navigate(['./hola'])
+            console.log("Si existe el usuario en el Back");
+            this.token.saveToken(data.token, data.rt);
+            // this.refreshtoken.saveRefreshToken(data.refreshtoken);
+            // window.location.href = data.link;
+            this.router.navigate(['./hola'])
           }
         },
         error => {
