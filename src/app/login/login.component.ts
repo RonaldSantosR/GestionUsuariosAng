@@ -41,6 +41,7 @@ export class LoginComponent {
 
   login() {
 
+    console.log("1º Entro al botón");
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
       console.log("Ingrese todos los datos");
@@ -58,14 +59,14 @@ export class LoginComponent {
       this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
         data => {
           if (data) {
-            console.log("Si existe el usuario en el Back");
-            this.token.saveToken(data.token, data.rt);
+            // this.token.saveToken(data.token, data.rt);
             // this.refreshtoken.saveRefreshToken(data.refreshtoken);
             // window.location.href = data.link;
             this.router.navigate(['./hola'])
           }
         },
         error => {
+          
           switch (error.status) {
             case 403:
               swal({

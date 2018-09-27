@@ -19,6 +19,7 @@ export class AuthService {
     this.headers = new HttpHeaders({
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
+    
     return this.http.post<any>('http://localhost:9082/login/generate-token', null, {headers: this.headers});
   }
 

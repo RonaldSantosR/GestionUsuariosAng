@@ -27,7 +27,7 @@ export class HolaComponent implements OnInit {
       data => {
         this.token.signOut();
         console.log("pasó por subscribe");
-        this.router.navigate(['./login'])
+        // this.router.navigate(['./login'])
              }
      );
 
