@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 
-const TOKEN_KEY = 'AuthTokenChris';
-const REFRESH_TOKEN_KEY = 'AuthTokenRonald';
+const TOKEN_KEY = 'Access Token';
+const REFRESH_TOKEN_KEY = 'Refresh Token';
 
 @Injectable()
 export class TokenStorage {
@@ -10,8 +10,8 @@ export class TokenStorage {
   constructor() { }
 
   signOut() {
-    window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.removeItem(REFRESH_TOKEN_KEY);
+    //window.localStorage.removeItem(TOKEN_KEY);
+    //window.localStorage.removeItem(REFRESH_TOKEN_KEY);
     window.localStorage.clear();
   }
 

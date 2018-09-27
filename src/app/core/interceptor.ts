@@ -23,7 +23,6 @@ export class Interceptor implements HttpInterceptor {
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
             console.log(err);
-            console.log('req url :: ' + req.url);
             if (err.status === 401) {
               
             }
