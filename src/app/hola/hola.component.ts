@@ -23,11 +23,10 @@ export class HolaComponent implements OnInit {
   
 
   logout(){
-    console.log("botón logout apretado");
     this.authService.FinAuth().subscribe(
       data => {
         this.token.signOut();
-        console.log("pasó subscribe");
+        console.log("pasó por subscribe");
         this.router.navigate(['./login'])
              }
      );

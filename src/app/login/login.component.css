@@ -6,10 +6,11 @@ h4{
 
 form{
   margin: auto;
-  background: rgb(180, 215, 235);
+  background:rgb(131, 196, 218);
   width: 50%;
-  border-style: solid;
+  border-style: dotted;
   border-color: rgb(100, 164, 247);
+  border-radius: 15px;
 }
 
 
@@ -27,27 +28,27 @@ input{
   border-color: black;
 }
 
+input:focus{
+  background-color: rgb(165, 218, 248);
+  border-color: rgb(78, 132, 248);
+}
+
+
 .boton1{
   /* background: violet; */
-  width: 64%;
   margin: auto;
-  margin-left: 200px;
+  text-align: center;
 }
 
 .boton2{
+  text-align: center;
   /* background: violet; */
-  width: 73%;
   margin: auto;
-  margin-left: 150px;
-}
-
-.botones{
-  /* background: red; */
-  margin: auto;
-  /* background: rgb(38, 159, 192); */
 }
 
 .caja{
+  margin: auto;
   text-align: center;
+  width: 50%;
   /* background: rgb(17, 97, 164); */
 }

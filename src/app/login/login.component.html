@@ -5,6 +5,7 @@
 <form [formGroup]="forma" (ngSubmit)="login()" novalidate="novalidate">
 
   <hr><hr>
+  <br>
 
   <div class="hola">
 
@@ -45,50 +46,41 @@
     </div>
 
 
-
     <br>
 
 
-
-    <div class="botones">
-
-      <div class="boton1">
-        <div class="input-group col-2">
-          <button type="submit" class="btn btn-outline-primary" [disabled]="count === 3">
-            LOGUEAR
-          </button>
-        </div>
-      </div>
-      <br>
-      <div class="boton2">
-        <div class="input-group col-3">
-          <button type="submit" class="btn btn-outline-primary">
-            OLVIDE CONTRASEÑA
-          </button>
-        </div>
-      </div>
-
-
+    <div class="boton1">
+        <button type="submit" class="btn btn-outline-primary" [disabled]="count === 3">
+          LOGUEAR
+        </button>
     </div>
+
+    <br>
+
+    <div class="boton2">
+       <button type="submit" class="btn btn-outline-primary">
+          OLVIDE CONTRASEÑA
+       </button>
+    </div>
+
 
 
   </div>
 
  
-  
   <hr>
   <hr>
-  <hr> 
-  
+  <hr>
 
-
-  <div class="caja">
-    <pre>
-      <h5>Tiempo para desbloqueo: {{segundos}}</h5>
-    </pre>
-  </div>
 
 </form>
+
+
+<div class="caja">
+  <pre>
+    <h5>Tiempo para desbloqueo: {{segundos}}</h5>
+  </pre>
+</div>
 
 
 
