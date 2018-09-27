@@ -11,6 +11,7 @@ export class TokenStorage {
 
   signOut() {
     window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.removeItem(REFRESH_TOKEN_KEY);
     window.localStorage.clear();
   }
 
@@ -20,12 +21,13 @@ export class TokenStorage {
     window.localStorage.setItem(REFRESH_TOKEN_KEY, rt);
   }
 
-  // public saveRefreshToken(refreshtoken: string){
-  //   window.localStorage.removeItem(REFRESH_TOKEN_KEY);
-  //   window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshtoken);
-  // }
 
   public getToken(): string {
     return window.localStorage.getItem(TOKEN_KEY);
   }
+
+  public getRefreshToken(): string {
+    return window.localStorage.getItem(REFRESH_TOKEN_KEY);
+  }
 }
+//hola
