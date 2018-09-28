@@ -59,10 +59,10 @@ export class LoginComponent {
       this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
         data => {
           if (data) {
-            // this.token.saveToken(data.token, data.rt);
-            // this.refreshtoken.saveRefreshToken(data.refreshtoken);
-            // window.location.href = data.link;
-            this.router.navigate(['./hola'])
+             this.token.saveToken(data.token, data.rt);
+            //this.refreshtoken.saveRefreshToken(data.refreshtoken);
+            window.location.href = data.link;
+            this.router.navigateByUrl(data.link);
           }
         },
         error => {
