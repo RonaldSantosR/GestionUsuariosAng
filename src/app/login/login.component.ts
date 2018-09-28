@@ -5,12 +5,9 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../core/auth.service';
-import { TokenStorage } from '../core/token.storage';
+
 
 import swal from 'sweetalert2'
-
-
-
 
 @Component({
   selector: 'app-login',
@@ -26,22 +23,21 @@ export class LoginComponent {
 
   constructor(private router: Router,
     public dialog: MatDialog,
-    private authService: AuthService,
-    private token: TokenStorage,
-    private refreshtoken: TokenStorage) {
+    private authService: AuthService
+    ) {
 
 
     this.forma = new FormGroup({
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
     })
-    // console.log(this.forma);
+   
   }
 
 
   login() {
 
-    console.log("1º Entro al botón");
+    
     if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
       this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
       console.log("Ingrese todos los datos");
@@ -59,10 +55,7 @@ export class LoginComponent {
       this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
         data => {
           if (data) {
-             this.token.saveToken(data.token, data.rt);
-            //this.refreshtoken.saveRefreshToken(data.refreshtoken);
-            window.location.href = data.link;
-            this.router.navigateByUrl(data.link);
+            window.location.href = data.ruta;
           }
         },
         error => {
@@ -110,7 +103,6 @@ export class LoginComponent {
 
   }
 
-
   validarBloquo(){
     if (this.count === 3) {
       swal({
@@ -130,7 +122,6 @@ export class LoginComponent {
       return;
     }
   }
-
 
   mostrarSegundos() {
     setTimeout(() => {

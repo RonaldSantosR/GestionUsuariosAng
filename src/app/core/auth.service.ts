@@ -20,7 +20,7 @@ export class AuthService {
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
     
-    return this.http.post<any>('http://localhost:9082/login/generate-token', null, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/token', null, {headers: this.headers});
   }
 
   FinAuth(): Observable<any> {
