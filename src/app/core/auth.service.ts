@@ -6,7 +6,7 @@ import { TokenStorage } from './token.storage';
 @Injectable()
 export class AuthService {
 
-  baseUrl: 'http://192.168.1.213:8082/';
+  baseUrl: 'http://localhost:9082/';
 
   headers: HttpHeaders;
 
@@ -20,7 +20,7 @@ export class AuthService {
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
     
-    return this.http.post<any>('http://192.168.1.213:8082/login/token', null, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/token', null, {headers: this.headers});
   }
 
   FinAuth(): Observable<any> {
@@ -32,7 +32,7 @@ export class AuthService {
     let sesion = decodedJwtData.idSesion
     console.log('idSesion :: '+sesion);
 
-    return this.http.post<any>('http://192.168.1.213:8082/login/cerrarsession', sesion);
+    return this.http.post<any>('http://localhost:9082/login/cerrarsession', sesion);
     
   }
 
