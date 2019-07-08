@@ -10,10 +10,8 @@ export class AuthService {
 
   headers: HttpHeaders;
 
-  constructor(private http: HttpClient, private token:TokenStorage) {
+  constructor(private http: HttpClient, private token:TokenStorage) { }
 
-
-  }
 
   attemptAuth(ussername: string, password: string): Observable<any> {
     this.headers = new HttpHeaders({
@@ -22,7 +20,9 @@ export class AuthService {
     
     return this.http.post<any>('http://localhost:9082/login/token', null, {headers: this.headers});
   }
+  
 
+  
   FinAuth(): Observable<any> {
     console.log(this.token.getToken())
     let jwt = this.token.getToken();

@@ -14,6 +14,8 @@ import { TokenStorage} from "./core/token.storage";
 import { HolaComponent } from './hola/hola.component';
 import { LoginGuard } from './core/login.guard';
 import { LogoutGuard } from './core/logout.guard';
+import { DominioService } from './shared/dominio.service';
+import { RequesterService } from './shared/requester.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,13 @@ import { LogoutGuard } from './core/logout.guard';
     AppRoutingModule
   ],
   entryComponents: [ErrorDialogComponent],
-  providers: [ErrorDialogComponent, AuthService, TokenStorage, LoginGuard, LogoutGuard,
+  providers: [ErrorDialogComponent, 
+    AuthService,
+    DominioService,
+    RequesterService,
+    TokenStorage, 
+    LoginGuard, 
+    LogoutGuard,
     {provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,
     multi : true}
