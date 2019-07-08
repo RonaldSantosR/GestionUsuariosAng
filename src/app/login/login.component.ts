@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   segundos = 5;
 
   dominios: Dominio[] = [];
+  dominio: Dominio;
 
   dominioSubscription: Subscription;
 
@@ -69,7 +70,7 @@ export class LoginComponent implements OnInit {
         })
         this.count++;
       } else {
-        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña).subscribe(
+        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña, 1).subscribe(
           data => {
             if (data) {
               window.location.href = data.ruta;
@@ -127,7 +128,7 @@ export class LoginComponent implements OnInit {
         })
         this.count++;
       } else {
-        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña).subscribe(
+        this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, 1, this.dominio).subscribe(
           data => {
             if (data) {
               window.location.href = data.ruta;
