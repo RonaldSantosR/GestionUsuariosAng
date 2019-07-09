@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.cargarDatosVista();
     this.loginForm = new FormGroup({
-      'acceso': new FormControl('1', Validators.required),
+      'acceso': new FormControl('', Validators.required),
       'dominio': new FormControl(null),
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
-    })
+    }, this.validarDominio.bind(this))
   }
 
 
@@ -61,14 +61,12 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: FormGroup) {
 
-    // let dominio: Dominio = new Dominio();
-
     this.dominio = loginForm.get("dominio").value
 
     console.log(loginForm.value)
     console.log(this.loginForm.value)
 
-    if (this.loginForm.get("acceso").value === 1) {
+    if (this.loginForm.get("acceso").value == 1) {
 
       if (this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || this.loginForm.get("contraseña").value === null || this.loginForm.get("contraseña").value.length === 0) {
         swal({
@@ -79,6 +77,7 @@ export class LoginComponent implements OnInit {
           allowOutsideClick: false
         })
         this.count++;
+        this.loginForm.setValue
       } else {
         this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.REGULAR).subscribe(
           data => {
@@ -221,12 +220,13 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // noDocumentsLoaded(form: FormGroup): { [key: string]: boolean } | null {
-  //   if (this.documentosCorrectos.length == 0) {
-  //     return { 'noDocumentsLoaded': true }
-  //   }
-  //   return null;
-  // }
+
+  validarDominio(form: FormGroup): { [key: string]: boolean } | null {
+    if (form.value.acceso === '2' && form.value.dominio === null) {
+      return { 'ingreseDominio': true }
+    }
+    return null;
+  }
 
 
 

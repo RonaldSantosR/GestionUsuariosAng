@@ -1,19 +1,19 @@
-h4{
-  margin: auto;
-  width: 50%;
-  text-align: center;
+
+p{
+  font-family: fantasy;
+  font-size: 40px;
 }
 
-/* span{
-  text-align: left;
-  background: red;
-} */
+span{
+  font: message-box;
+}
 
 form{
   margin: auto;
   background:rgb(131, 196, 218);
-  width: 50%;
-  border-style: dotted;
+  /* background:url(C:\fotologin\exactlogin.JPG); */
+  width: 40%;
+  border-style: solid;
   border-color: rgb(100, 164, 247);
   border-radius: 15px;
 }
@@ -24,6 +24,7 @@ input{
   margin-bottom: 20px;
   padding: 7px;
   border-color: black;
+  background: #DBE9EF;
 }
 
 select{
@@ -31,6 +32,7 @@ select{
   margin-bottom: 20px;
   padding: 7px;
   border-color: black;
+  background: #DBE9EF;
 }
 
 input:focus{
