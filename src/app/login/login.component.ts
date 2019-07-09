@@ -9,6 +9,7 @@ import swal from 'sweetalert2'
 import { Dominio } from '../model/dominio.model';
 import { Subscription } from 'rxjs';
 import { DominioService } from '../shared/dominio.service';
+import { TipoAccesoEnum } from '../enum/tipoacceso.enum';
 
 @Component({
   selector: 'app-login',
@@ -39,11 +40,12 @@ export class LoginComponent implements OnInit {
     this.cargarDatosVista();
     this.loginForm = new FormGroup({
       'acceso': new FormControl('1', Validators.required),
-      'dominio': new FormControl(null, Validators.required),
+      'dominio': new FormControl(null),
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
     })
   }
+
 
   cargarDatosVista() {
     this.dominios = this.dominioService.getDominios();
@@ -57,7 +59,15 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login() {
+  login(loginForm: FormGroup) {
+
+    // let dominio: Dominio = new Dominio();
+
+    this.dominio = loginForm.get("dominio").value
+
+    console.log(loginForm.value)
+    console.log(this.loginForm.value)
+
     if (this.loginForm.get("acceso").value === 1) {
 
       if (this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || this.loginForm.get("contraseña").value === null || this.loginForm.get("contraseña").value.length === 0) {
@@ -70,7 +80,7 @@ export class LoginComponent implements OnInit {
         })
         this.count++;
       } else {
-        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña, 1).subscribe(
+        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.REGULAR).subscribe(
           data => {
             if (data) {
               window.location.href = data.ruta;
@@ -128,7 +138,7 @@ export class LoginComponent implements OnInit {
         })
         this.count++;
       } else {
-        this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, 1, this.dominio).subscribe(
+        this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.ACTIVE_DIRECTORY, this.dominio).subscribe(
           data => {
             if (data) {
               window.location.href = data.ruta;
@@ -209,6 +219,14 @@ export class LoginComponent implements OnInit {
       }
     }, 1000)
   }
+
+
+  // noDocumentsLoaded(form: FormGroup): { [key: string]: boolean } | null {
+  //   if (this.documentosCorrectos.length == 0) {
+  //     return { 'noDocumentsLoaded': true }
+  //   }
+  //   return null;
+  // }
 
 
 
