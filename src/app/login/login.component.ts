@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
 
+
   cargarDatosVista() {
     this.dominios = this.dominioService.getDominios();
 
@@ -59,24 +60,38 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login(loginForm: FormGroup) {
 
-    console.log(loginForm.value)
+  login(loginForm: FormGroup) {
+    
+    let usuariologin = this.loginForm.get("usuario").value
+    let usuariostring = usuariologin.toString();
+    let usuario = usuariostring.toUpperCase();
+
+    let contraseñalogin = this.loginForm.get("contraseña").value
+    let contraseñastring = contraseñalogin.toString();
+    let contraseña = contraseñastring.toUpperCase();
+    
+    console.log("USUARIO")
+    console.log(usuario)
+    console.log("CONTRASEÑA")
+    console.log(contraseña)
 
     if (this.loginForm.get("acceso").value == 1) {
 
-      if (this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || this.loginForm.get("contraseña").value === null || this.loginForm.get("contraseña").value.length === 0) {
+      if (usuario === null || usuario.length === 0 || contraseña === null || contraseña.length === 0) {
         swal({
           title: 'ERROR',
           position: 'top',
           text: 'Por favor, ingrese todos los datos',
           type: 'error',
-          allowOutsideClick: false
+          allowOutsideClick: false          
         })
         this.count++;
         this.loginForm.setValue
+        this.loginForm.controls['usuario'].reset();
+        this.loginForm.controls['contraseña'].reset();
       } else {
-        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.REGULAR).subscribe(
+        this.authService.attemptAuth(this.loginForm.get("usuario").value, this.loginForm.value.contraseña, TipoAccesoEnum.REGULAR).subscribe(
           data => {
             if (data) {
               window.location.href = data.ruta;
@@ -93,6 +108,8 @@ export class LoginComponent implements OnInit {
                   allowOutsideClick: false
                 })
                 this.count++;
+                this.loginForm.controls['usuario'].reset();
+                this.loginForm.controls['contraseña'].reset();
                 break;
               case 401:
                 swal({
@@ -103,6 +120,8 @@ export class LoginComponent implements OnInit {
                   allowOutsideClick: false
                 })
                 this.count++;
+                this.loginForm.controls['usuario'].reset();
+                this.loginForm.controls['contraseña'].reset();
                 break;
               default:
                 swal({
@@ -112,20 +131,24 @@ export class LoginComponent implements OnInit {
                   type: 'error',
                   allowOutsideClick: false
                 })
+                this.loginForm.controls['usuario'].reset();
+                this.loginForm.controls['contraseña'].reset();
                 break;
             }
-            this.validarBloquo();
+            this.validarBloque();
             return;
           }
         );
       }
 
     } else {
-      this.dominio = loginForm.get("dominio").value
 
-      if (this.loginForm.get("dominio").value === null || this.loginForm.get("dominio").value.length === 0 || 
-          this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || 
-          this.loginForm.get("contraseña").value === null || this.loginForm.get("contraseña").value.length === 0) {
+      let dominio = loginForm.get("dominio").value;
+      this.dominio = dominio
+
+      if (dominio === null || dominio.length === 0 || 
+          usuario === null || usuario.length === 0 || 
+          contraseña === null || contraseña.length === 0) {
         swal({
           title: 'ERROR',
           position: 'top',
@@ -133,6 +156,8 @@ export class LoginComponent implements OnInit {
           type: 'error',
           allowOutsideClick: false
         })
+        this.loginForm.controls['usuario'].reset();
+        this.loginForm.controls['contraseña'].reset();
         this.count++;
       } else {
         this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.ACTIVE_DIRECTORY, this.dominio).subscribe(
@@ -151,6 +176,8 @@ export class LoginComponent implements OnInit {
                   type: 'warning',
                   allowOutsideClick: false
                 })
+                this.loginForm.controls['usuario'].reset();
+                this.loginForm.controls['contraseña'].reset();
                 this.count++;
                 break;
               case 401:
@@ -161,6 +188,8 @@ export class LoginComponent implements OnInit {
                   type: 'error',
                   allowOutsideClick: false
                 })
+                this.loginForm.controls['usuario'].reset();
+                this.loginForm.controls['contraseña'].reset();
                 this.count++;
                 break;
               default:
@@ -171,9 +200,11 @@ export class LoginComponent implements OnInit {
                   type: 'error',
                   allowOutsideClick: false
                 })
+                this.loginForm.controls['usuario'].reset();
+                this.loginForm.controls['contraseña'].reset();
                 break;
             }
-            this.validarBloquo();
+            this.validarBloque();
             return;
           }
         );
@@ -181,14 +212,13 @@ export class LoginComponent implements OnInit {
 
     }
 
-
-
-    this.validarBloquo();
-
+    this.validarBloque();
 
   }
 
-  validarBloquo() {
+
+
+  validarBloque() {
     if (this.count === 3) {
       swal({
         title: 'ADVERTENCIA',
