@@ -13,7 +13,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private token:TokenStorage) { }
 
-
   attemptAuth(ussername: string, password: string, idAcceso:number): Observable<any> {
     this.headers = new HttpHeaders({
       "Authorization": "Basic " + btoa(ussername + ':' + password)
@@ -29,8 +28,6 @@ export class AuthService {
     
     return this.http.post<any>('http://localhost:9082/login/token/' + idAcceso, objectoDominio, {headers: this.headers});
   }
-
-
   
   FinAuth(): Observable<any> {
     console.log(this.token.getToken())
@@ -44,7 +41,6 @@ export class AuthService {
     return this.http.post<any>('http://localhost:9082/login/cerrarsession', sesion);
     
   }
-
   
 
 }

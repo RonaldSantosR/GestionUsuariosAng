@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.cargarDatosVista();
     this.loginForm = new FormGroup({
-      'acceso': new FormControl('', Validators.required),
+      'acceso': new FormControl('1', Validators.required),
       'dominio': new FormControl(null),
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
@@ -61,10 +61,7 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: FormGroup) {
 
-    this.dominio = loginForm.get("dominio").value
-
     console.log(loginForm.value)
-    console.log(this.loginForm.value)
 
     if (this.loginForm.get("acceso").value == 1) {
 
@@ -124,6 +121,7 @@ export class LoginComponent implements OnInit {
       }
 
     } else {
+      this.dominio = loginForm.get("dominio").value
 
       if (this.loginForm.get("dominio").value === null || this.loginForm.get("dominio").value.length === 0 || 
           this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || 
