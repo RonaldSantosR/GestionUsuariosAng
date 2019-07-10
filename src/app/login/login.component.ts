@@ -1,101 +1,186 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../core/auth.service';
 
 
 import swal from 'sweetalert2'
+import { Dominio } from '../model/dominio.model';
+import { Subscription } from 'rxjs';
+import { DominioService } from '../shared/dominio.service';
+import { TipoAccesoEnum } from '../enum/tipoacceso.enum';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
 
-  forma: FormGroup;
+export class LoginComponent implements OnInit {
+
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private dominioService: DominioService
+  ) { }
+
+  loginForm: FormGroup;
   error = "";
   count = 0;
   segundos = 5;
 
-  constructor(private router: Router,
-    public dialog: MatDialog,
-    private authService: AuthService
-    ) {
+  dominios: Dominio[] = [];
+  dominio: Dominio;
 
+  dominioSubscription: Subscription;
 
-    this.forma = new FormGroup({
+  ngOnInit() {
+    this.cargarDatosVista();
+    this.loginForm = new FormGroup({
+      'acceso': new FormControl('1', Validators.required),
+      'dominio': new FormControl(null),
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
-    })
-   
+    }, this.validarDominio.bind(this))
   }
 
 
-  login() {
+  cargarDatosVista() {
+    this.dominios = this.dominioService.getDominios();
 
-    
-    if (this.forma.get("usuario").value === null || this.forma.get("usuario").value.length === 0 ||
-      this.forma.get("contraseña").value === null || this.forma.get("contraseña").value.length === 0) {
-      console.log("Ingrese todos los datos");
-      swal({
-        title: 'ERROR',
-        position: 'top',
-        text: 'Por favor, ingrese todos los datos',
-        type: 'error',
-        allowOutsideClick: false
-      })
-      this.count++;
+    this.dominioSubscription = this.dominioService.dominiosChanged.subscribe(
+      dominios => {
+        this.dominios = dominios
+      }
+    )
+
+  }
+
+
+  login(loginForm: FormGroup) {
+
+    console.log(loginForm.value)
+
+    if (this.loginForm.get("acceso").value == 1) {
+
+      if (this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || this.loginForm.get("contraseña").value === null || this.loginForm.get("contraseña").value.length === 0) {
+        swal({
+          title: 'ERROR',
+          position: 'top',
+          text: 'Por favor, ingrese todos los datos',
+          type: 'error',
+          allowOutsideClick: false
+        })
+        this.count++;
+        this.loginForm.setValue
+      } else {
+        this.authService.attemptAuth(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.REGULAR).subscribe(
+          data => {
+            if (data) {
+              window.location.href = data.ruta;
+            }
+          },
+          error => {  
+            switch (error.status) {
+              case 403:
+                swal({
+                  title: 'ERROR',
+                  position: 'top',
+                  text: 'El Usuario se encuentra inactivo',
+                  type: 'warning',
+                  allowOutsideClick: false
+                })
+                this.count++;
+                break;
+              case 401:
+                swal({
+                  title: 'ERROR',
+                  position: 'top',
+                  text: 'El Usuario y/o Password son incorrectos',
+                  type: 'error',
+                  allowOutsideClick: false
+                })
+                this.count++;
+                break;
+              default:
+                swal({
+                  title: 'ERROR',
+                  position: 'top',
+                  text: 'ERROR INTERNO DE SERVIDOR',
+                  type: 'error',
+                  allowOutsideClick: false
+                })
+                break;
+            }
+            this.validarBloquo();
+            return;
+          }
+        );
+      }
 
     } else {
+      this.dominio = loginForm.get("dominio").value
 
-      this.authService.attemptAuth(this.forma.value.usuario, this.forma.value.contraseña).subscribe(
-        data => {
-          if (data) {
-            window.location.href = data.ruta;
+      if (this.loginForm.get("dominio").value === null || this.loginForm.get("dominio").value.length === 0 || 
+          this.loginForm.get("usuario").value === null || this.loginForm.get("usuario").value.length === 0 || 
+          this.loginForm.get("contraseña").value === null || this.loginForm.get("contraseña").value.length === 0) {
+        swal({
+          title: 'ERROR',
+          position: 'top',
+          text: 'Por favor, ingrese todos los datos',
+          type: 'error',
+          allowOutsideClick: false
+        })
+        this.count++;
+      } else {
+        this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.ACTIVE_DIRECTORY, this.dominio).subscribe(
+          data => {
+            if (data) {
+              window.location.href = data.ruta;
+            }
+          },
+          error => {  
+            switch (error.status) {
+              case 403:
+                swal({
+                  title: 'ERROR',
+                  position: 'top',
+                  text: 'El Usuario se encuentra inactivo',
+                  type: 'warning',
+                  allowOutsideClick: false
+                })
+                this.count++;
+                break;
+              case 401:
+                swal({
+                  title: 'ERROR',
+                  position: 'top',
+                  text: 'El Usuario y/o Password son incorrectos',
+                  type: 'error',
+                  allowOutsideClick: false
+                })
+                this.count++;
+                break;
+              default:
+                swal({
+                  title: 'ERROR',
+                  position: 'top',
+                  text: 'ERROR INTERNO DE SERVIDOR',
+                  type: 'error',
+                  allowOutsideClick: false
+                })
+                break;
+            }
+            this.validarBloquo();
+            return;
           }
-        },
-        error => {
-          
-          switch (error.status) {
-            case 403:
-              swal({
-                title: 'ERROR',
-                position: 'top',
-                text: 'El Usuario se encuentra inactivo',
-                type: 'warning',
-                allowOutsideClick: false
-              })
-              this.count++;
-              break;
-            case 401:
-              swal({
-                title: 'ERROR',
-                position: 'top',
-                text: 'El Usuario y/o Password son incorrectos',
-                type: 'error',
-                allowOutsideClick: false
-              })
-              this.count++;
-              break;
-            default:
-              swal({
-                title: 'ERROR',
-                position: 'top',
-                text: 'ERROR INTERNO DE SERVIDOR',
-                type: 'error',
-                allowOutsideClick: false
-              })
-              break;
-          }
-        this.validarBloquo();
-        return;
-        }
-      );
+        );
+      }
+
     }
+
 
 
     this.validarBloquo();
@@ -103,7 +188,7 @@ export class LoginComponent {
 
   }
 
-  validarBloquo(){
+  validarBloquo() {
     if (this.count === 3) {
       swal({
         title: 'ADVERTENCIA',
@@ -130,6 +215,15 @@ export class LoginComponent {
         this.mostrarSegundos();
       }
     }, 1000)
+  }
+
+
+
+  validarDominio(form: FormGroup): { [key: string]: boolean } | null {
+    if (form.value.acceso === '2' && form.value.dominio === null) {
+      return { 'ingreseDominio': true }
+    }
+    return null;
   }
 
 
