@@ -1,21 +1,26 @@
 
 p{
-  font-family: fantasy;
-  font-size: 40px;
+  font-size: 30px;
+  color: white;
+  margin-right: 380px; 
+  margin-top: 130px;
 }
 
 span{
   font: message-box;
+
 }
 
 form{
   margin: auto;
-  background:rgb(131, 196, 218);
+  /* background:rgb(131, 196, 218); */
   /* background:url(C:\fotologin\exactlogin.JPG); */
-  width: 40%;
-  border-style: solid;
-  border-color: rgb(100, 164, 247);
-  border-radius: 15px;
+  background: -prefix-linear-gradient(left top, #355b7c,#ffffff, #768a9c); 
+  background: linear-gradient(to bottom right,#355b7c,#3f607c, #768a9c);
+
+  width: 70%;
+  height: 700px;
+  margin-top: 180px; 
 }
 
 input{
@@ -23,8 +28,14 @@ input{
   margin: auto;
   margin-bottom: 20px;
   padding: 7px;
-  border-color: black;
-  background: #DBE9EF;
+  background-color: transparent;
+  font-size:  16px; 
+  border:  none; 
+  border-bottom:  solid 1px 
+}
+
+.type{
+  background: transparent;
 }
 
 select{
@@ -44,6 +55,10 @@ button{
   margin: auto;
   text-align: center;
   width: 80%;
+  border-radius: 0%;  
+  background: #ffffff;
+  height: 80px;
+
 }
 
 .caja{
@@ -51,3 +66,9 @@ button{
   text-align: center;
   width: 50%;
 }
+
+centrologin{
+  margin-top: 500px;
+  display:block;
+}
+

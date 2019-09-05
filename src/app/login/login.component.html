@@ -1,37 +1,44 @@
 
 <form [formGroup]="loginForm" class="text-center border border-light p-5"  (ngSubmit)="login(loginForm)" >
 
-  <p class="h4 mb-4">EXTERNUS</p>
 
-  <span>ACCESO</span>
-
-  <br>
-
-  <select class="mdb-select" formControlName="acceso">
-    <option value="" disabled>Elegir tipo de acceso</option>
-    <option value="1">Regular</option>
-    <option value="2">Active directory</option>
-  </select>
-
-  <div *ngIf="loginForm.get('acceso').value == 2">
-    <span>DOMINIO</span>
+  <div class="centrologin  ml-5 mt-5 mr-5">
+      <p class="mb-4 ">Log in</p>
     <br>
-    <select class="mdb-select" formControlName="dominio">
-      <option *ngFor="let dominio of dominios" [ngValue]="dominio">{{dominio.nombre}}</option>
+    <select class="mdb-select" formControlName="acceso">
+      <option value="" disabled>Elegir tipo de acceso</option>
+      <option value="1">Regular</option>
+      <option value="2">Active directory</option>
     </select>
+  
+    <div *ngIf="loginForm.get('acceso').value == 2">
+      <span>DOMINIO</span>
+      <br>
+      <select class="mdb-select" formControlName="dominio">
+        <option *ngFor="let dominio of dominios" [ngValue]="dominio">{{dominio.nombre}}</option>
+      </select>
+    </div>
+  
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <input type="text" class="form-control" placeholder="Username or email">
+          </div>
+
+
+          
+    <input type="text" id="usuario" formControlName="usuario" class="form-control mb-4 mt-2" placeholder="Ingrese usuario">
+    <input placeholder="Email" type="email" name="email" id="email" autocomplete="off">
+    <input type="password" id="contraseña" formControlName="contraseña" class="form-control mb-4" placeholder="Ingrese contraseña">
+  
+    <button class="btn btn btn-block my-4" type="submit">INGRESAR</button>
+
+
   </div>
 
-  <input type="text" id="usuario" formControlName="usuario" class="form-control mb-4 mt-2" placeholder="Ingrese usuario">
 
-  <input type="password" id="contraseña" formControlName="contraseña" class="form-control mb-4" placeholder="Ingrese contraseña">
 
-  <button class="btn btn-info btn-block my-4" name="buton" id="buton" type="submit" > INGRESAR </button>
 
 </form>
 
-<div class="caja">
-  <pre>
-    <h5>Tiempo para desbloqueo: {{segundos}}</h5>
-  </pre>
-</div>
+
 
