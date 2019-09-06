@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  private userUrl = 'http://localhost:9082/';
+  private userUrl = 'http://www.exact.com.pe:8303/';
 
  
 

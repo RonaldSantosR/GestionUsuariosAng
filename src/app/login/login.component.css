@@ -13,11 +13,36 @@ form{
   /* background:url(C:\fotologin\exactlogin.JPG); */
   background: -prefix-linear-gradient(left top, #355b7c,#ffffff, #768a9c); 
   background: linear-gradient(to bottom right,#355b7c,#3f607c, #768a9c);
-  
-  width: 70%;
+  width: 55%;
   height: 600px;
   margin-top: 180px; 
 }
+
+@media(max-width:1000px){
+  form{
+    width: 100%;
+    margin-bottom:10px;
+    margin-top: 20px;
+    }
+  }
+
+@media(max-width:1000px){
+  .buttonid{
+    width: 100%;
+      }
+  }
+  @media(max-width:1000px){
+    .letrabutton{
+      width: 100%;
+        }
+    }
+  
+    @media(max-width:200px){
+      .titulo{
+        font-size: 1px;  
+      }
+      }
+
 
 input{
   
@@ -69,7 +94,7 @@ button{
 
 .centrologin{
   margin: auto;
-  display:block;
+  
  }
 
 ::placeholder{
