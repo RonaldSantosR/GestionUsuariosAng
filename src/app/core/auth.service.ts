@@ -18,7 +18,7 @@ export class AuthService {
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
     
-    return this.http.post<any>('http://localhost:9082/login/token/' + idAcceso, null, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/token/' + 1, null, {headers: this.headers});
   }
 
   attemptAuthActiveDirectory(ussername: string, password: string, idAcceso:number, objectoDominio:Dominio): Observable<any> {

@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+/* .boa{
+    background: url(./assets/Exact26.jpg) no-repeat center fixed;
+    height:100%; 
+    width:100%;  
+    position: absolute
+}
+ */
+
+body, html {
+    height: 100%;
+  }
+  
+  .bg {
+    /* The image used */
+    background-image: url(./assets/Exact26.jpg);
+  
+    /* Full height */
+    height: 100%;
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

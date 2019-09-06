@@ -17,6 +17,7 @@ import { LogoutGuard } from './core/logout.guard';
 import { DominioService } from './shared/dominio.service';
 import { RequesterService } from './shared/requester.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +33,10 @@ import { RequesterService } from './shared/requester.service';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule
+   
   ],
   entryComponents: [ErrorDialogComponent],
-  providers: [ErrorDialogComponent, 
+  providers: [ErrorDialogComponent,
     AuthService,
     DominioService,
     RequesterService,
