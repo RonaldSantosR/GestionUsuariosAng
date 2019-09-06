@@ -11,18 +11,22 @@
  */
 
 body, html {
-    height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   }
   
   .bg {
     /* The image used */
-    background-image: url(./assets/Exact26.jpg);
+    
   
     /* Full height */
-    height: 100%;
+    
     
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+    background-image: url(./assets/Exact26.jpg);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+   }
