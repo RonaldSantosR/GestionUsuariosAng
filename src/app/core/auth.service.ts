@@ -26,7 +26,7 @@ export class AuthService {
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
     
-    return this.http.post<any>('http://localhost:9082/login/token/' + idAcceso, objectoDominio, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/token/' + 1, objectoDominio, {headers: this.headers});
   }
   
   FinAuth(): Observable<any> {

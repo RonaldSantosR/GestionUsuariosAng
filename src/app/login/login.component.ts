@@ -37,18 +37,18 @@ export class LoginComponent implements OnInit {
   dominioSubscription: Subscription;
 
   ngOnInit() {
-    this.cargarDatosVista();
+    //this.cargarDatosVista();
     this.loginForm = new FormGroup({
       'acceso': new FormControl('1', Validators.required),
-      'dominio': new FormControl(null),
+      //'dominio': new FormControl(null),
       'usuario': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'contraseña': new FormControl('', Validators.required)
-    }, this.validarDominio.bind(this))
+    } /* this.validarDominio.bind(this) */)
   }
 
 
 
-  cargarDatosVista() {
+ /*  cargarDatosVista() {
     this.dominios = this.dominioService.getDominios();
 
     this.dominioSubscription = this.dominioService.dominiosChanged.subscribe(
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       }
     )
 
-  }
+  } */
 
 
 
@@ -70,12 +70,7 @@ export class LoginComponent implements OnInit {
     let contraseñalogin = this.loginForm.get("contraseña").value
     let contraseñastring = contraseñalogin.toString();
     let contraseña = contraseñastring.toUpperCase();
-    
-    console.log("USUARIO")
-    console.log(usuario)
-    console.log("CONTRASEÑA")
-    console.log(contraseña)
-
+  
     if (this.loginForm.get("acceso").value == 1) {
 
       if (usuario === null || usuario.length === 0 || contraseña === null || contraseña.length === 0) {
@@ -143,11 +138,10 @@ export class LoginComponent implements OnInit {
 
     } else {
 
-      let dominio = loginForm.get("dominio").value;
+      /* let dominio = loginForm.get("dominio").value;
       this.dominio = dominio
-
-      if (dominio === null || dominio.length === 0 || 
-          usuario === null || usuario.length === 0 || 
+      dominio === null || dominio.length === 0 || */
+      if (usuario === null || usuario.length === 0 || 
           contraseña === null || contraseña.length === 0) {
         swal({
           title: 'ERROR',
@@ -160,7 +154,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls['contraseña'].reset();
         this.count++;
       } else {
-        this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.ACTIVE_DIRECTORY, this.dominio).subscribe(
+        this.authService.attemptAuthActiveDirectory(this.loginForm.value.usuario, this.loginForm.value.contraseña, TipoAccesoEnum.ACTIVE_DIRECTORY, null).subscribe(
           data => {
             if (data) {
               window.location.href = data.ruta;
@@ -249,12 +243,12 @@ export class LoginComponent implements OnInit {
 
 
 
-  validarDominio(form: FormGroup): { [key: string]: boolean } | null {
+ /*  validarDominio(form: FormGroup): { [key: string]: boolean } | null {
     if (form.value.acceso === '2' && form.value.dominio === null) {
       return { 'ingreseDominio': true }
     }
     return null;
-  }
+  } */
 
 
 
