@@ -1,3 +1,9 @@
 .main-container{
-    margin-top: 50px;
+    padding-top: 180px;
+}
+
+@media (max-width: 360px){
+    .main-container{
+       padding-top: 0%;
+    }
 }

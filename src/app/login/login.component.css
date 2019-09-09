@@ -15,7 +15,6 @@ form{
   background: linear-gradient(to bottom right,#355b7c,#3f607c, #768a9c);
   width: 55%;
   height: 600px;
-  margin-top: 180px; 
 }
 
 @media(max-width:1000px){

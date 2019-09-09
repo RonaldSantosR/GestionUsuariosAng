@@ -70,12 +70,7 @@ export class LoginComponent implements OnInit {
     let contraseñalogin = this.loginForm.get("contraseña").value
     let contraseñastring = contraseñalogin.toString();
     let contraseña = contraseñastring.toUpperCase();
-    
-    console.log("USUARIO")
-    console.log(usuario)
-    console.log("CONTRASEÑA")
-    console.log(contraseña)
-
+  
     if (this.loginForm.get("acceso").value == 1) {
 
       if (usuario === null || usuario.length === 0 || contraseña === null || contraseña.length === 0) {

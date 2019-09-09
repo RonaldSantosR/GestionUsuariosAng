@@ -7,7 +7,7 @@ import { Dominio } from '../model/dominio.model';
 @Injectable()
 export class AuthService {
 
-  baseUrl: 'http://www.exact.com.pe:8303/';
+  baseUrl: 'http://localhost:9082/';
 
   headers: HttpHeaders;
 
@@ -18,7 +18,7 @@ export class AuthService {
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
     
-    return this.http.post<any>('http://www.exact.com.pe:8303/login/token/' + 1, null, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/token/' + 1, null, {headers: this.headers});
   }
 
   attemptAuthActiveDirectory(ussername: string, password: string, idAcceso:number, objectoDominio:Dominio): Observable<any> {
@@ -26,7 +26,7 @@ export class AuthService {
       "Authorization": "Basic " + btoa(ussername + ':' + password)
     })
     
-    return this.http.post<any>('http://www.exact.com.pe:8303/login/token/' + 1, objectoDominio, {headers: this.headers});
+    return this.http.post<any>('http://localhost:9082/login/token/' + 1, objectoDominio, {headers: this.headers});
   }
   
   FinAuth(): Observable<any> {
@@ -38,7 +38,7 @@ export class AuthService {
     let sesion = decodedJwtData.idSesion
     console.log('idSesion :: '+sesion);
 
-    return this.http.post<any>('http://www.exact.com.pe:8303/login/cerrarsession', sesion);
+    return this.http.post<any>('http://localhost:9082/login/cerrarsession', sesion);
     
   }
   
