@@ -14,7 +14,7 @@ form{
   background: -prefix-linear-gradient(left top, #355b7c,#ffffff, #768a9c); 
   background: linear-gradient(to bottom right,#355b7c,#3f607c, #768a9c);
   width: 55%;
-  height: 600px;
+  height: auto;
 }
 
 @media(max-width:1000px){
@@ -60,11 +60,11 @@ input{
 }
 
 select{
-  width: 80%;
+  width: 100%;
   margin-bottom: 20px;
   padding: 7px;
   border: none;
-  background: transparent;
+  background-color: white;
 }
 
 input:focus{
@@ -93,7 +93,6 @@ button{
 
 .centrologin{
   margin: auto;
-  
  }
 
 ::placeholder{
@@ -108,4 +107,5 @@ img{
     width: 2em;
     margin-bottom: 17px;
 }
+
 
