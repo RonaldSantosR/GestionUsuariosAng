@@ -10,17 +10,17 @@ export class DominioService {
     REQUEST_URL = AppSettings.API_ENDPOINT + AppSettings.DOMINIO_URL;
 
     constructor(private requester: RequesterService ){
-        /* this.listarDominiosActivos().subscribe(
+     this.listarDominiosActivos().subscribe(
             dominios => {
                 this.dominiosActivos = dominios;
                 this.dominiosChanged.next(this.dominiosActivos);
             }
-        ) */
+        )
     }
 
     private dominiosActivos: Dominio[];
     
-/*     getDominios(): Dominio[] {
+    getDominios(): Dominio[] {
         return this.dominiosActivos;
     }
 
@@ -28,11 +28,11 @@ export class DominioService {
 
     listarDominiosActivos(): Observable<Dominio[]>{
         return this.requester.get<Dominio[]>(this.REQUEST_URL + "activos", {});
-    } */
+    } 
 
-    // listarDominiosAll(): Observable<Dominio[]> {
-    //     return this.requester.get<Dominio[]>(this.REQUEST_URL , {});
-    // }
+     listarDominiosAll(): Observable<Dominio[]> {
+         return this.requester.get<Dominio[]>(this.REQUEST_URL , {});
+    }
 
 
 }
